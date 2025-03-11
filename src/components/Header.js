@@ -1,5 +1,6 @@
 import { LOGO_URL } from "../utilities/constants"
 import { useState } from "react"
+import { Link } from "react-router"
 
 
 const Header = () => {
@@ -9,10 +10,10 @@ const Header = () => {
             <img className='logo' src={LOGO_URL}></img>
             <div className='nav-container'>
                 <ul className="nav-items">
-                    <li>Home</li>
-                    <li>About Us</li>
-                    <li>Contact Us</li>
-                    <li>Cart</li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/about">About Us</Link></li>
+                    <li><Link to="/contact">Contact Us</Link></li>
+                    <li><Link to="/cart">Cart</Link></li>
                 </ul>
                 <button className='login' onClick={changeName}>{btnText}</button>
             </div>
@@ -21,7 +22,7 @@ const Header = () => {
 
     function changeName() {
         btnText == 'Login' ? setBtnText('Logout') : setBtnText('Login')
-        
+
     }
 }
 
