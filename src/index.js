@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client"
 import Header from "./components/Header";
 import Body from "./components/Body";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router";
-import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Menu from "./components/Menu";
+import { lazy, Suspense } from "react";
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -19,6 +19,8 @@ const Main = () => {
     )
 }
 
+const About = lazy(() => import("./components/About"))
+
 const appRoute = createBrowserRouter([
     {
         path: '/',
@@ -30,7 +32,7 @@ const appRoute = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <About />
+                element: (<Suspense fallback={<h1>Loading...</h1>}><About /></Suspense>)
             },
             {
                 path: '/contact',
