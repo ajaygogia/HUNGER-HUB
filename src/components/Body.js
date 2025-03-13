@@ -2,11 +2,12 @@ import RestrauntCard from "./RestrauntCard"
 import { useState, useEffect } from "react"
 import Shimmer from "./Shimmer"
 import { Link } from "react-router"
+import useOnlineStatus from "../hooks/useOnlineStatus"
 
 const Body = () => {
     const [listOfRestraunts, setListOfRestraunts] = useState([])
     const [filteredListOfRestraunts, setFilteredListOfRestraunts] = useState([])
-
+    const onlineStatus = useOnlineStatus()
     const [searchText, setSearchText] = useState('')
 
     useEffect(() => {
@@ -23,6 +24,12 @@ const Body = () => {
 
     function filterArray() {
         setFilteredListOfRestraunts(listOfRestraunts.filter((res) => res.info.name.toLowerCase().includes(searchText.toLowerCase())))
+    }
+
+    if (!onlineStatus) {
+        return (
+            <h1>You Are Offline</h1>
+        )
     }
 
     return listOfRestraunts.length == 0 ? <Shimmer /> : (

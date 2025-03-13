@@ -1,6 +1,6 @@
 import Shimmer from "./Shimmer"
 import { useParams } from "react-router"
-import useMenu from "../utilities/useMenu"
+import useMenu from "../hooks/useMenu"
 
 const Menu = () => {
 
