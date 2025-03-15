@@ -1,8 +1,9 @@
 import RestrauntCard, { withLabel } from "./RestrauntCard"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import Shimmer from "./Shimmer"
 import { Link } from "react-router"
 import useOnlineStatus from "../hooks/useOnlineStatus"
+import UserContext from "../utilities/UserContext"
 
 const Body = () => {
     const [listOfRestraunts, setListOfRestraunts] = useState([])
@@ -10,6 +11,7 @@ const Body = () => {
     const onlineStatus = useOnlineStatus()
     const [searchText, setSearchText] = useState('')
     const CheapRestraunt = withLabel(RestrauntCard)
+    const {loggedInUser, setUserName} = useContext(UserContext)
 
     useEffect(() => {
         fetchData()
@@ -20,7 +22,6 @@ const Body = () => {
         const res = await data.json()
         setListOfRestraunts(res?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         setFilteredListOfRestraunts(res?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        console.log(filteredListOfRestraunts)
 
     }
 
@@ -43,6 +44,9 @@ const Body = () => {
                 </input>
 
                 <button className="search-btn" type='button' onClick={filterArray}>Search</button>
+                <input placeholder="Update Logged In User" value={loggedInUser} className="update-context" onChange={(e)=>{
+                    setUserName(e.target.value)
+                }}></input>
             </div>
 
 

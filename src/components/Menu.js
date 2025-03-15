@@ -1,11 +1,14 @@
 import Shimmer from "./Shimmer"
 import { useParams } from "react-router"
 import useMenu from "../hooks/useMenu"
+import RestrauntCategory from "./RestrauntCategory"
+import { useState } from "react"
 
 const Menu = () => {
 
     const resId = useParams().resId
     const resInfo = useMenu(resId)
+    const [showIndex, setShowIndex] = useState(1)
 
     if (resInfo == null) {
         return <Shimmer />
@@ -18,17 +21,19 @@ const Menu = () => {
         }
     }
 
+    const category = resInfo?.data?.cards[4].groupedCard.cardGroupMap.REGULAR?.cards.filter((card) => {
+        return card.card.card['@type'] == 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'
+    })
+
     return (
         <div id='menu' className="menu">
             <h1>{name}</h1>
             <p>{cuisines?.join(', ')}</p>
             <p>{costForTwoMessage}</p>
             <h2>Menu</h2>
-            <ul>
-                {
-                    menuItems.map((item) => (<li key={item?.card?.info?.id}>{item?.card?.info?.name}  - ₹{(item?.card?.info?.price ?? item?.card?.info?.defaultPrice) / 100}</li>))
-                }
-            </ul>
+            {
+                category.map((item, index) => <RestrauntCategory key={item.card.card.categoryId} setShowIndex={()=> setShowIndex(index)} showList={showIndex == index ? true : false} data={item} />)
+            }
         </div>
     )
 }

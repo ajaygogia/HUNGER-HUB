@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom/client"
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -7,15 +7,25 @@ import Contact from "./components/Contact";
 import Error from "./components/Error";
 import Menu from "./components/Menu";
 import { lazy, Suspense } from "react";
+import UserContext from "./utilities/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 const Main = () => {
+    const [userName, setUserName] = useState()
+    useEffect(() => {
+        const data = {
+            name: 'Ajay Gogia'
+        }
+        setUserName(data.name)
+    },[])
     return (
-        <div id='main'>
-            <Header />
-            <Outlet />
-        </div>
+        <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+            <div id='main'>
+                <Header />
+                <Outlet />
+            </div>
+        </UserContext.Provider>
     )
 }
 
