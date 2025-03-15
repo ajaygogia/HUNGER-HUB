@@ -1,4 +1,4 @@
-import RestrauntCard from "./RestrauntCard"
+import RestrauntCard, { withLabel } from "./RestrauntCard"
 import { useState, useEffect } from "react"
 import Shimmer from "./Shimmer"
 import { Link } from "react-router"
@@ -9,6 +9,7 @@ const Body = () => {
     const [filteredListOfRestraunts, setFilteredListOfRestraunts] = useState([])
     const onlineStatus = useOnlineStatus()
     const [searchText, setSearchText] = useState('')
+    const CheapRestraunt = withLabel(RestrauntCard)
 
     useEffect(() => {
         fetchData()
@@ -19,6 +20,7 @@ const Body = () => {
         const res = await data.json()
         setListOfRestraunts(res?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
         setFilteredListOfRestraunts(res?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        console.log(filteredListOfRestraunts)
 
     }
 
@@ -52,7 +54,9 @@ const Body = () => {
 
             <div className="res-container">
                 {filteredListOfRestraunts.map((res) =>
-                    <Link key={res.info.id} to={'/menu/' + res.info.id}><RestrauntCard  res={res} /></Link>
+                    <Link key={res.info.id} to={'/menu/' + res.info.id}>{
+                        +res.info.costForTwo.substring(1, 4) < 300 ? (<CheapRestraunt res={res} />) : (<RestrauntCard res={res} />)
+                    }</Link>
                 )}
             </div>
         </div>

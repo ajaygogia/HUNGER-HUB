@@ -16,4 +16,16 @@ const RestrauntCard = (props) => {
     )
 }
 
+export const withLabel = (RestrauntCard) => {
+    return (props) => {
+        return (
+            <div>
+                <label className="withLabel">Cheap</label>
+                <RestrauntCard {...props}/>
+            </div>
+        )
+    }
+
+}
+
 export default RestrauntCard
