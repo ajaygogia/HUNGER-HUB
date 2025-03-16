@@ -8,7 +8,7 @@ const Menu = () => {
 
     const resId = useParams().resId
     const resInfo = useMenu(resId)
-    const [showIndex, setShowIndex] = useState(1)
+    const [showIndex, setShowIndex] = useState(0)
 
     if (resInfo == null) {
         return <Shimmer />

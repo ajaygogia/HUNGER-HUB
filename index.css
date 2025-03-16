@@ -136,6 +136,8 @@
     width: 200px;
     padding: 5px;
     margin: 10px;
+    color: black;
+    text-decoration: underline;
 }
 
 .res-card:hover {
