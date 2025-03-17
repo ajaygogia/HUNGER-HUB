@@ -8,6 +8,9 @@ import Error from "./components/Error";
 import Menu from "./components/Menu";
 import { lazy, Suspense } from "react";
 import UserContext from "./utilities/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utilities/appStore";
+import Cart from "./components/Cart";
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
@@ -18,14 +21,16 @@ const Main = () => {
             name: 'Ajay Gogia'
         }
         setUserName(data.name)
-    },[])
+    }, [])
     return (
-        <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-            <div id='main'>
-                <Header />
-                <Outlet />
-            </div>
-        </UserContext.Provider>
+        <Provider store={appStore}>
+            <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+                <div id='main'>
+                    <Header />
+                    <Outlet />
+                </div>
+            </UserContext.Provider>
+        </Provider>
     )
 }
 
@@ -51,6 +56,10 @@ const appRoute = createBrowserRouter([
             {
                 path: '/menu/:resId',
                 element: <Menu />
+            },
+            {
+                path: '/cart',
+                element: <Cart />
             }
         ],
         errorElement: <Error />

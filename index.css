@@ -131,6 +131,17 @@
     height: 200px;
 }
 
+.add-button {
+    height: 30px;
+    position: absolute;
+    margin-left: 42.5%;
+    margin-top: 94px;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 .res-card {
     background-color: #F0F0F0;
     width: 200px;
@@ -155,4 +166,21 @@
     width: 200px;
     background-color: #F0F0F0;
     margin: 30px;
+}
+
+.cart-items {
+    align-items: center;
+    text-align: center;
+    width: 60%;
+    margin: auto;
+    justify-content: center;
+}
+
+.clear-cart {
+    padding: 10px;
+    margin-bottom: 26px;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
 }
