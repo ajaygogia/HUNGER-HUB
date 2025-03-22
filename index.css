@@ -176,6 +176,13 @@
     justify-content: center;
 }
 
+.contactUsFields {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
 .clear-cart {
     padding: 10px;
     margin-bottom: 26px;
