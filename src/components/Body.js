@@ -20,8 +20,8 @@ const Body = () => {
     async function fetchData() {
         const data = await fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING')
         const res = await data.json()
-        setListOfRestraunts(res?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setFilteredListOfRestraunts(res?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setListOfRestraunts(res?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setFilteredListOfRestraunts(res?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
 
     }
 
@@ -35,7 +35,7 @@ const Body = () => {
         )
     }
 
-    return listOfRestraunts.length == 0 ? <Shimmer /> : (
+    return listOfRestraunts?.length == 0 ? <Shimmer /> : (
         <div className='body'>
             <div className='search-box'>
                 <input className="search" value={searchText} type="search" onChange={(e) => {
