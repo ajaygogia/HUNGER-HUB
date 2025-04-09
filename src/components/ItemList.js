@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux"
 import { IMG_URL } from "../utilities/constants"
+import { useLocation } from "react-router";
 
 function ItemList(data) {
     const info = data?.res?.itemCards || data?.items;
@@ -7,6 +8,9 @@ function ItemList(data) {
     const addItem = (item) => {
         dispatch({ type: 'cart/addItem', payload: item });
     }
+
+    const location = useLocation();
+    const isCartPage = location.pathname.includes("/cart");
 
     return (
         <div>
@@ -18,7 +22,9 @@ function ItemList(data) {
                     <div className="itemDesc">
                         <p>{item.card.info.description}</p>
                         <img className='food-image' src={IMG_URL + item.card.info.imageId}></img>
-                        <button className="add-button" onClick={()=>addItem(item)}>Add +</button>
+                        {!isCartPage && (
+                            <button className="add-button" onClick={() => addItem(item)}>Add +</button>
+                        )}
                     </div>
                 </div>
             ))}
