@@ -44,9 +44,6 @@ const Body = () => {
                 </input>
 
                 <button className="search-btn" type='button' onClick={filterArray}>Search</button>
-                <input placeholder="Update Logged In User" value={loggedInUser} className="update-context" onChange={(e)=>{
-                    setUserName(e.target.value)
-                }}></input>
             </div>
 
 

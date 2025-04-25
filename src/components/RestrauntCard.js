@@ -14,7 +14,6 @@ const RestrauntCard = (props) => {
             <h4>{avgRating + ' Stars'}</h4>
             <h4>{costForTwo}</h4>
             <h4>{sla.deliveryTime + ' Min'}</h4>
-            <h4>By {loggedInUser}</h4>
         </div>
     )
 }
